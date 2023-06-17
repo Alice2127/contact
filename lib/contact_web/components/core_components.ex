@@ -284,7 +284,6 @@ defmodule ContactWeb.CoreComponents do
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
     |> assign(:rows, @rows) #この時点では期待値通りassignsに:rowsのキーバリューが入っている
-    |> IO.inspect()
     |> input()
   end
 
