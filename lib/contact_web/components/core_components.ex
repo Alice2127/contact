@@ -284,7 +284,7 @@ defmodule ContactWeb.CoreComponents do
     |> assign(:errors, Enum.map(field.errors, &translate_error(&1)))
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
-    |> assign(:rows, @rows) #この時点では期待値通りassignsに:rowsのキーバリューが入っている
+    |> assign(:rows, @rows)
     |> input()
   end
 
@@ -332,10 +332,6 @@ defmodule ContactWeb.CoreComponents do
   end
 
   def input(%{type: "textarea"} = assigns) do
-    # 詰まっている箇所
-    # ■期待値 assignsの中に:rowsのキーバリューが渡って来てほしい。
-    # ■現在の状態 渡って来てない。理由が分からない（6月16日時点）
-    #   └よって、rows={@rows}に変えると:rowsというキーが見つからないと怒られる。
     ~H"""
     <div phx-feedback-for={@name}>
       <.label for={@id}><%= @label %></.label>
