@@ -256,6 +256,7 @@ defmodule ContactWeb.CoreComponents do
   attr :name, :any
   attr :label, :string, default: nil
   attr :value, :any
+  attr :rows, :integer, default: nil
 
   attr :type, :string,
     default: "text",
@@ -341,7 +342,7 @@ defmodule ContactWeb.CoreComponents do
       <textarea
         id={@id}
         name={@name}
-        rows="5"
+        rows={@rows}
         class={[
           "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
           "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
