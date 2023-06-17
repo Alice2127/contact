@@ -1,4 +1,7 @@
 defmodule ContactWeb.CoreComponents do
+#定数を定義
+  @rows 2
+
   @moduledoc """
   Provides core UI components.
 
@@ -253,6 +256,7 @@ defmodule ContactWeb.CoreComponents do
   attr :name, :any
   attr :label, :string, default: nil
   attr :value, :any
+  attr :rows, :integer, default: nil
 
   attr :type, :string,
     default: "text",
@@ -280,6 +284,7 @@ defmodule ContactWeb.CoreComponents do
     |> assign(:errors, Enum.map(field.errors, &translate_error(&1)))
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
+    |> assign(:rows, @rows)
     |> input()
   end
 
@@ -333,7 +338,7 @@ defmodule ContactWeb.CoreComponents do
       <textarea
         id={@id}
         name={@name}
-        rows="5"
+        rows={@rows}
         class={[
           "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
           "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
