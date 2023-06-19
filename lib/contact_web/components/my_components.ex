@@ -1,6 +1,7 @@
 defmodule ContactWeb.Mycomponents do
   use Phoenix.Component
-  import ContactWeb.CoreComponents
+  alias ContactWeb.CoreComponents
+  alias ContactWeb.Mycomponents
 
   @doc """
   Renders an input with label and error messages.
@@ -53,6 +54,14 @@ defmodule ContactWeb.Mycomponents do
 
   slot :inner_block
 
+  def input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+    assigns
+    |> assign(field: nil, id: assigns.id || field.id)
+    |> assign(:errors, Enum.map(field.errors, &CoreComponents.translate_error(&1)))
+    |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
+    |> assign_new(:value, fn -> field.value end)
+    |> Mycomponents.input()
+  end
 
   #assignsの中身を必要としないコンポーネント（こちらは動く）
   def input(%{type: "hoge"} = assigns) do
@@ -67,20 +76,20 @@ defmodule ContactWeb.Mycomponents do
     IO.inspect("独自のコンポーネント2")
     ~H"""
     <div phx-feedback-for={@name}>
-      <.label for={@id}><%= @label %></.label>
+      <CoreComponents.label for={@id}><%= @label %></CoreComponents.label>
       <textarea
         id={@id}
         name={@name}
         rows={@rows}
         class={[
           "mt-2 block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
-          "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
+          "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400 bg-green-500/50",
           @errors == [] && "border-zinc-300 focus:border-zinc-400",
           @errors != [] && "border-rose-400 focus:border-rose-400"
         ]}
         {@rest}
       ><%= Phoenix.HTML.Form.normalize_value("textarea", @value) %></textarea>
-      <.error :for={msg <- @errors}><%= msg %></.error>
+      <CoreComponents.error :for={msg <- @errors}><%= msg %></CoreComponents.error>
     </div>
     """
   end
