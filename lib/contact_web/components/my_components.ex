@@ -1,9 +1,5 @@
 defmodule ContactWeb.Mycomponents do
   use Phoenix.Component
-
-  alias Phoenix.LiveView.JS
-  import ContactWeb.Gettext
-
   import ContactWeb.CoreComponents
 
   @doc """
@@ -32,7 +28,7 @@ defmodule ContactWeb.Mycomponents do
       <.input name="my-input" errors={["oh no!"]} />
   """
   attr :id, :any, default: nil
-  attr :name, :any, default: "pochi"
+  attr :name, :any
   attr :label, :string, default: nil
   attr :value, :any
   attr :rows, :integer, default: 2
@@ -57,11 +53,12 @@ defmodule ContactWeb.Mycomponents do
 
   slot :inner_block
 
-  def input(%{type: "fuga"} = assigns) do
-    IO.inspect("fugaのビュー")
-    IO.inspect(assigns)
+
+  #assignsの中身を必要としないコンポーネント（こちらは動く）
+  def input(%{type: "hoge"} = assigns) do
+    IO.inspect("独自のコンポーネント1")
     ~H"""
-    <p>Hello, <%= @name %>!</p>
+    <p>Thank you for your feedback!</p>
     """
   end
 
