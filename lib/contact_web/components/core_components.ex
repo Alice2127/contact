@@ -328,6 +328,7 @@ defmodule ContactWeb.CoreComponents do
   end
 
   def input(%{type: "textarea"} = assigns) do
+    IO.inspect("Messageのビュー")
     ~H"""
     <div phx-feedback-for={@name}>
       <.label for={@id}><%= @label %></.label>
@@ -350,6 +351,7 @@ defmodule ContactWeb.CoreComponents do
 
   # All other inputs text, datetime-local, url, password, etc. are handled here...
   def input(assigns) do
+    IO.inspect("Nameのビュー")
     ~H"""
     <div phx-feedback-for={@name}>
       <.label for={@id}><%= @label %></.label>
