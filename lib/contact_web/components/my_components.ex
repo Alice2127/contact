@@ -63,7 +63,7 @@ defmodule ContactWeb.Mycomponents do
     |> Mycomponents.input()
   end
 
-  #assignsの中身を必要としないコンポーネント（こちらは動く）
+  #assignsの中身を必要としないコンポーネント
   def input(%{type: "hoge"} = assigns) do
     IO.inspect("独自のコンポーネント1")
     ~H"""
@@ -71,7 +71,7 @@ defmodule ContactWeb.Mycomponents do
     """
   end
 
-  #assignsの中身を必要とするコンポーネント（こちらが動かない）
+  #assignsの中身を必要とするコンポーネント
   def input(%{type: "fuga"} = assigns) do
     IO.inspect("独自のコンポーネント2")
     ~H"""
