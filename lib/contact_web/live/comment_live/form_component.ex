@@ -21,9 +21,7 @@ defmodule ContactWeb.CommentLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:name]} type="text" label="Name" />
-        <.input field={@form[:message]} type="textarea" label="Message" />
         <Mycomponents.input field={@form[:message]} type="textarea" label="Message" />
-        <p>Thank you for your feedback!</p>
         <:actions>
           <.button phx-disable-with="Saving...">Save Comment</.button>
         </:actions>
