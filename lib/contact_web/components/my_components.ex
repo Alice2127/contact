@@ -63,9 +63,7 @@ defmodule ContactWeb.Mycomponents do
     |> Mycomponents.input()
   end
 
-  #assignsの中身を必要とするコンポーネント
-  def input(%{type: "fuga"} = assigns) do
-    IO.inspect("独自のコンポーネント2")
+  def input(%{type: "textarea"} = assigns) do
     ~H"""
     <div phx-feedback-for={@name}>
       <CoreComponents.label for={@id}><%= @label %></CoreComponents.label>
