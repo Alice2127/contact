@@ -2,6 +2,7 @@ defmodule ContactWeb.CommentLive.FormComponent do
   use ContactWeb, :live_component
 
   alias Contact.Comments
+  alias ContactWeb.Mycomponents
 
   @impl true
   def render(assigns) do
@@ -21,7 +22,7 @@ defmodule ContactWeb.CommentLive.FormComponent do
       >
         <.input field={@form[:name]} type="text" label="Name" />
         <.input field={@form[:message]} type="textarea" label="Message" />
-        <ContactWeb.Mycomponents.input field={@form[:message]} type="textarea" label="Message" />
+        <Mycomponents.input field={@form[:message]} type="textarea" label="Message" />
         <p>Thank you for your feedback!</p>
         <:actions>
           <.button phx-disable-with="Saving...">Save Comment</.button>
