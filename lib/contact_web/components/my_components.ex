@@ -85,14 +85,4 @@ defmodule ContactWeb.Mycomponents do
     </div>
     """
   end
-
-
-  def input(assigns) do
-    IO.inspect("独自のコンポーネント1")
-    ~H"""
-    <p>Thank you for your feedback!</p>
-    """
-  end
-
-
 end
