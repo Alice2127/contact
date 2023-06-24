@@ -3,31 +3,6 @@ defmodule ContactWeb.Mycomponents do
   alias ContactWeb.CoreComponents
   alias ContactWeb.Mycomponents
 
-  @doc """
-  Renders an input with label and error messages.
-
-  A `Phoenix.HTML.FormField` may be passed as argument,
-  which is used to retrieve the input name, id, and values.
-  Otherwise all attributes may be passed explicitly.
-
-  ## Types
-
-  This function accepts all HTML input types, considering that:
-
-    * You may also set `type="select"` to render a `<select>` tag
-
-    * `type="checkbox"` is used exclusively to render boolean values
-
-    * For live file uploads, see `Phoenix.Component.live_file_input/1`
-
-  See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
-  for more information.
-
-  ## Examples
-
-      <.input field={@form[:email]} type="email" />
-      <.input name="my-input" errors={["oh no!"]} />
-  """
   attr :id, :any, default: nil
   attr :name, :any
   attr :label, :string, default: nil
@@ -54,16 +29,17 @@ defmodule ContactWeb.Mycomponents do
 
   slot :inner_block
 
-  def input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+  def textarea(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+    IO.inspect("textareaの共通処理部分")
     assigns
     |> assign(field: nil, id: assigns.id || field.id)
     |> assign(:errors, Enum.map(field.errors, &CoreComponents.translate_error(&1)))
     |> assign_new(:name, fn -> if assigns.multiple, do: field.name <> "[]", else: field.name end)
     |> assign_new(:value, fn -> field.value end)
-    |> Mycomponents.input()
+    |> Mycomponents.textarea()
   end
 
-  def input(%{type: "textarea"} = assigns) do
+  def textarea(%{type: "textarea"} = assigns) do
     ~H"""
     <div phx-feedback-for={@name}>
       <CoreComponents.label for={@id}><%= @label %></CoreComponents.label>
