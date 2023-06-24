@@ -86,6 +86,7 @@ defmodule ContactWeb do
       # Core UI components and translation
       import ContactWeb.CoreComponents
       import ContactWeb.Gettext
+      import ContactWeb.Mycomponents
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
