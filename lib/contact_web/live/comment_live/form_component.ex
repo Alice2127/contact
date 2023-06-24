@@ -2,7 +2,6 @@ defmodule ContactWeb.CommentLive.FormComponent do
   use ContactWeb, :live_component
 
   alias Contact.Comments
-  alias ContactWeb.Mycomponents
 
   @impl true
   def render(assigns) do
