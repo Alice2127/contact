@@ -328,7 +328,7 @@ defmodule ContactWeb.CoreComponents do
   end
 
   def input(%{type: "textarea"} = assigns) do
-    IO.inspect("Messageのビュー")
+    IO.inspect("ここを通らないようにする")
     ~H"""
     <div phx-feedback-for={@name}>
       <.label for={@id}><%= @label %></.label>
