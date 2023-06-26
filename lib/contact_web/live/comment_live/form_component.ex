@@ -22,7 +22,8 @@ defmodule ContactWeb.CommentLive.FormComponent do
         <.input field={@form[:name]} type="text" label="Name" />
         <.textarea field={@form[:message]} type="textarea" label="Message" />
         <:actions>
-          <.button phx-disable-with="Saving...">Save Comment</.button>
+        <.row_up phx-disable-with="Changing...">表示行を増やす</.row_up>
+        <.button phx-disable-with="Saving...">Save Comment</.button>
         </:actions>
       </.simple_form>
     </div>
